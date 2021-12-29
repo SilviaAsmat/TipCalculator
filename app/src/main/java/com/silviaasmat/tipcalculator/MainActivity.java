@@ -24,11 +24,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         observeBillTotal();
+        observeTipPercent();
     }
 
     private void observeBillTotal() {
         EditText input = findViewById(R.id.billTotalInput);
         input.addTextChangedListener(new BillTotalListener());
+    }
+
+    private void observeTipPercent() {
+        EditText input = findViewById(R.id.tipPercentageInput);
+        input.addTextChangedListener(new TipPercentListener());
     }
 
     class BillTotalListener implements TextWatcher {
@@ -50,11 +56,46 @@ public class MainActivity extends AppCompatActivity {
             EditText tipPercent = findViewById(R.id.tipPercentageInput);
             String tipPercentString = tipPercent.getEditableText().toString();
             boolean isTipPercentEmpty = tipPercentString.equals("");
-            if (isTipPercentEmpty) {
+            boolean isBillTotalEmpty = currentValue.equals("");
+            if (isTipPercentEmpty || isBillTotalEmpty) {
                 //do nothing
             } else {
                 int tipPercentNumber = Integer.parseInt(tipPercentString);
                 double billTotalNumber = Double.parseDouble(currentValue);
+                double total = tipPercentNumber * billTotalNumber/100;
+                Log.v("SAA", "total: "+ total);
+                TextView tipTotal = findViewById(R.id.tipTotal);
+                tipTotal.setText("Tip Total: $" + total);
+            }
+
+        }
+    }
+
+    class TipPercentListener implements TextWatcher {
+
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            String currentValue = editable.toString();
+            Log.v("SAA", currentValue);
+            EditText billTotal = findViewById(R.id.billTotalInput);
+            String billTotalString = billTotal.getEditableText().toString();
+            boolean isBillTotalStringEmpty = billTotalString.equals("");
+            boolean isTipPercentEmpty = currentValue.equals("");
+            if (isBillTotalStringEmpty || isTipPercentEmpty) {
+                //do nothing
+            } else {
+                int tipPercentNumber = Integer.parseInt(currentValue);
+                double billTotalNumber = Double.parseDouble(billTotalString);
                 double total = tipPercentNumber * billTotalNumber/100;
                 Log.v("SAA", "total: "+ total);
                 TextView tipTotal = findViewById(R.id.tipTotal);
