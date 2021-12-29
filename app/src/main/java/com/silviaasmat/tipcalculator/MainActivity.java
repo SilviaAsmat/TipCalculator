@@ -37,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
         input.addTextChangedListener(new TipPercentListener());
     }
 
+    private void updateTipTotal(double total) {
+        Log.v("SAA", "total: "+ total);
+        TextView tipTotal = findViewById(R.id.tipTotal);
+        tipTotal.setText("Tip Total: $" + total);
+    }
+
     class BillTotalListener implements TextWatcher {
 
         @Override
@@ -63,9 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 int tipPercentNumber = Integer.parseInt(tipPercentString);
                 double billTotalNumber = Double.parseDouble(currentValue);
                 double total = tipPercentNumber * billTotalNumber/100;
-                Log.v("SAA", "total: "+ total);
-                TextView tipTotal = findViewById(R.id.tipTotal);
-                tipTotal.setText("Tip Total: $" + total);
+                updateTipTotal(total);
             }
 
         }
@@ -97,9 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 int tipPercentNumber = Integer.parseInt(currentValue);
                 double billTotalNumber = Double.parseDouble(billTotalString);
                 double total = tipPercentNumber * billTotalNumber/100;
-                Log.v("SAA", "total: "+ total);
-                TextView tipTotal = findViewById(R.id.tipTotal);
-                tipTotal.setText("Tip Total: $" + total);
+                updateTipTotal(total);
             }
 
         }
