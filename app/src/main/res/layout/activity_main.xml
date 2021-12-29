@@ -42,6 +42,7 @@
         android:id="@+id/tipPercentageInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:text="18"
         app:layout_constraintStart_toEndOf="@id/tipPercentageLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tipPercentageLabel"

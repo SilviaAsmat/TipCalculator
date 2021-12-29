@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +15,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        EditText tipPercent = findViewById(R.id.tipPercentageInput);
+        tipPercent.setText("18");
+
     }
 
     @Override
@@ -43,6 +47,20 @@ public class MainActivity extends AppCompatActivity {
         public void afterTextChanged(Editable editable) {
             String currentValue = editable.toString();
             Log.v("SAA", currentValue);
+            EditText tipPercent = findViewById(R.id.tipPercentageInput);
+            String tipPercentString = tipPercent.getEditableText().toString();
+            boolean isTipPercentEmpty = tipPercentString.equals("");
+            if (isTipPercentEmpty) {
+                //do nothing
+            } else {
+                int tipPercentNumber = Integer.parseInt(tipPercentString);
+                double billTotalNumber = Double.parseDouble(currentValue);
+                double total = tipPercentNumber * billTotalNumber/100;
+                Log.v("SAA", "total: "+ total);
+                TextView tipTotal = findViewById(R.id.tipTotal);
+                tipTotal.setText("Tip Total: $" + total);
+            }
+
         }
     }
 }
