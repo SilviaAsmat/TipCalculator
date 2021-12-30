@@ -71,18 +71,7 @@ public class MainActivity extends AppCompatActivity {
         public void afterTextChanged(Editable editable) {
             String currentValue = editable.toString();
             Log.v("SAA", currentValue);
-            EditText tipPercent = findViewById(R.id.tipPercentageInput);
-            String tipPercentString = tipPercent.getEditableText().toString();
-            boolean isTipPercentEmpty = tipPercentString.equals("");
-            boolean isBillTotalEmpty = currentValue.equals("");
-            if (isTipPercentEmpty || isBillTotalEmpty) {
-                //do nothing
-            } else {
-                int tipPercentNumber = Integer.parseInt(tipPercentString);
-                double billTotalNumber = Double.parseDouble(currentValue);
-                double total = tipPercentNumber * billTotalNumber/100;
-                updateTipTotal(total);
-            }
+            viewModel.updateBillTotal(currentValue);
         }
     }
 
@@ -102,18 +91,7 @@ public class MainActivity extends AppCompatActivity {
         public void afterTextChanged(Editable editable) {
             String currentValue = editable.toString();
             Log.v("SAA", currentValue);
-            EditText billTotal = findViewById(R.id.billTotalInput);
-            String billTotalString = billTotal.getEditableText().toString();
-            boolean isBillTotalStringEmpty = billTotalString.equals("");
-            boolean isTipPercentEmpty = currentValue.equals("");
-            if (isBillTotalStringEmpty || isTipPercentEmpty) {
-                //do nothing
-            } else {
-                int tipPercentNumber = Integer.parseInt(currentValue);
-                double billTotalNumber = Double.parseDouble(billTotalString);
-                double total = tipPercentNumber * billTotalNumber/100;
-                updateTipTotal(total);
-            }
+            viewModel.updateTipPercent(currentValue);
         }
     }
 }

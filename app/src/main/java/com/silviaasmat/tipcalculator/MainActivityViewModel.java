@@ -10,11 +10,12 @@ public class MainActivityViewModel extends ViewModel {
     public LiveData<String> result = _result;
 
     public void updateBillTotal(String billTotal) {
+        _result.setValue(billTotal);
 
     }
 
     public void updateTipPercent(String tipPercent) {
-
+        _result.setValue(tipPercent);
     }
 
 }
