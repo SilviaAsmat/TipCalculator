@@ -11,13 +11,21 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private MainActivityViewModel viewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         EditText tipPercent = findViewById(R.id.tipPercentageInput);
         tipPercent.setText("18");
-
+        ViewModelFactory factory = new ViewModelFactory();
+        viewModel = factory.create(MainActivityViewModel.class);
+        viewModel.result.observe(this, tipAmount -> {
+            Log.v("SAA", tipAmount);
+            updateTipTotal(tipAmount);
+        }
+        );
     }
 
     @Override
@@ -37,10 +45,14 @@ public class MainActivity extends AppCompatActivity {
         input.addTextChangedListener(new TipPercentListener());
     }
 
-    private void updateTipTotal(double total) {
+    private void updateTipTotal(String total) {
         Log.v("SAA", "total: "+ total);
         TextView tipTotal = findViewById(R.id.tipTotal);
         tipTotal.setText("Tip Total: $" + total);
+    }
+
+    private void updateTipTotal(double total) {
+        updateTipTotal(""+total);
     }
 
     class BillTotalListener implements TextWatcher {
@@ -71,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 double total = tipPercentNumber * billTotalNumber/100;
                 updateTipTotal(total);
             }
-
         }
     }
 
@@ -103,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
                 double total = tipPercentNumber * billTotalNumber/100;
                 updateTipTotal(total);
             }
-
         }
     }
 }
