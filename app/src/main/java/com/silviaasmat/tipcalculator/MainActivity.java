@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private void updateTipTotal(String total) {
         Log.v("SAA", "total: "+ total);
         TextView tipTotal = findViewById(R.id.tipTotal);
-        tipTotal.setText("Tip Total: $" + total);
+        tipTotal.setText(total);
     }
 
     private void updateTipTotal(double total) {
