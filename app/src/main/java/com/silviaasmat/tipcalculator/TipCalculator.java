@@ -5,11 +5,21 @@ public class TipCalculator {
     private int tipPercentage;
 
     public void setBillTotal(double billTotal) {
-        this.billTotal = billTotal;
+        boolean isNegative = billTotal < 0;
+        if (isNegative) {
+            // Do nothing
+        } else {
+            this.billTotal = billTotal;
+        }
     }
 
     public void setTipPercentage(int tipPercentage) {
-        this.tipPercentage = tipPercentage;
+        boolean isNegative = tipPercentage < 0;
+        if (isNegative) {
+            // Do nothing
+        } else {
+            this.tipPercentage = tipPercentage;
+        }
     }
 
     public double calculateTip() {
