@@ -18,30 +18,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ViewModelFactory factory = new ViewModelFactory();
-        viewModel = factory.create(MainActivityViewModel.class);
-        viewModel.result.observe(this, tipAmount -> {
-            Log.v("SAA", tipAmount);
-            updateTipTotal(tipAmount);
-        }
-        );
-        Button preset15button = findViewById(R.id.preset15Button);
-        preset15button.setOnClickListener(view -> {
-            EditText input = findViewById(R.id.tipPercentageInput);
-            input.setText("15");
-        });
-
-        Button preset18button = findViewById(R.id.preset18Button);
-        preset18button.setOnClickListener(view -> {
-            EditText input = findViewById(R.id.tipPercentageInput);
-            input.setText("18");
-        });
-
-        Button preset20button = findViewById(R.id.preset20Button);
-        preset20button.setOnClickListener(view -> {
-            EditText input = findViewById(R.id.tipPercentageInput);
-            input.setText("20");
-        });
+        setupViewModel();
+        setPresetButtonsClickListeners();
     }
 
     @Override
@@ -67,8 +45,34 @@ public class MainActivity extends AppCompatActivity {
         tipTotal.setText(total);
     }
 
-    private void updateTipTotal(double total) {
-        updateTipTotal(""+total);
+    private void setPresetButtonsClickListeners() {
+        Button preset15button = findViewById(R.id.preset15Button);
+        preset15button.setOnClickListener(view -> {
+            EditText input = findViewById(R.id.tipPercentageInput);
+            input.setText("15");
+        });
+
+        Button preset18button = findViewById(R.id.preset18Button);
+        preset18button.setOnClickListener(view -> {
+            EditText input = findViewById(R.id.tipPercentageInput);
+            input.setText("18");
+        });
+
+        Button preset20button = findViewById(R.id.preset20Button);
+        preset20button.setOnClickListener(view -> {
+            EditText input = findViewById(R.id.tipPercentageInput);
+            input.setText("20");
+        });
+    }
+
+    private void setupViewModel() {
+        ViewModelFactory factory = new ViewModelFactory();
+        viewModel = factory.create(MainActivityViewModel.class);
+        viewModel.result.observe(this, tipAmount -> {
+                    Log.v("SAA", tipAmount);
+                    updateTipTotal(tipAmount);
+                }
+        );
     }
 
     class BillTotalListener implements TextWatcher {
