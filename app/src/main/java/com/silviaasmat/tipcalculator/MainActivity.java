@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,8 +18,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        EditText tipPercent = findViewById(R.id.tipPercentageInput);
-        tipPercent.setText("18");
         ViewModelFactory factory = new ViewModelFactory();
         viewModel = factory.create(MainActivityViewModel.class);
         viewModel.result.observe(this, tipAmount -> {
@@ -26,6 +25,23 @@ public class MainActivity extends AppCompatActivity {
             updateTipTotal(tipAmount);
         }
         );
+        Button preset15button = findViewById(R.id.preset15Button);
+        preset15button.setOnClickListener(view -> {
+            EditText input = findViewById(R.id.tipPercentageInput);
+            input.setText("15");
+        });
+
+        Button preset18button = findViewById(R.id.preset18Button);
+        preset18button.setOnClickListener(view -> {
+            EditText input = findViewById(R.id.tipPercentageInput);
+            input.setText("18");
+        });
+
+        Button preset20button = findViewById(R.id.preset20Button);
+        preset20button.setOnClickListener(view -> {
+            EditText input = findViewById(R.id.tipPercentageInput);
+            input.setText("20");
+        });
     }
 
     @Override
