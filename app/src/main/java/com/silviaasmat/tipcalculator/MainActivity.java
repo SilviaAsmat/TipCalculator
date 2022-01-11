@@ -69,8 +69,12 @@ public class MainActivity extends AppCompatActivity {
         ViewModelFactory factory = new ViewModelFactory();
         viewModel = factory.create(MainActivityViewModel.class);
         viewModel.result.observe(this, tipAmount -> {
-                    Log.v("SAA", tipAmount);
                     updateTipTotal(tipAmount);
+                }
+        );
+        viewModel.errorMessage.observe(this, errorMessage -> {
+            EditText input = findViewById(R.id.tipPercentageInput);
+            input.setError(errorMessage);
                 }
         );
     }
