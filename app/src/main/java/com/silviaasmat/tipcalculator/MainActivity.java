@@ -113,9 +113,15 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable editable) {
-            String currentValue = editable.toString();
+            String currentValue = editable.toString().replace("%", "");
+            String formatted = currentValue + "%";
+            EditText input = findViewById(R.id.tipPercentageInput);
+            input.removeTextChangedListener(this);
+            input.setText(formatted);
+            input.setSelection(formatted.length() - 1);
             Log.v("SAA", currentValue);
             viewModel.updateTipPercent(currentValue);
+            input.addTextChangedListener(this);
         }
     }
 }

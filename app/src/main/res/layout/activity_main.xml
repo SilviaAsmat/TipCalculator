@@ -42,11 +42,13 @@
         android:id="@+id/tipPercentageInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textAlignment="textEnd"
         app:layout_constraintStart_toEndOf="@id/tipPercentageLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tipPercentageLabel"
         app:layout_constraintBottom_toBottomOf="@id/tipPercentageLabel"
-        android:inputType="number"/>
+        android:inputType="number"
+        tools:text="120%"/>
 
     <TextView
         android:id="@+id/tipTotal"
@@ -61,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tipPercentageLabel"
-        tools:text="reallyreallylonglabelmessagetext"/>
+        tools:text="reallyreally longlabel messagetext"/>
 
     <Button
         android:id="@+id/preset15Button"
