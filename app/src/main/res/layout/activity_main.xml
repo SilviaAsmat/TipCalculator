@@ -52,6 +52,7 @@
         android:id="@+id/tipTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:padding="12dp"
         android:text="$0.0"
         android:textStyle="bold"
@@ -59,7 +60,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tipPercentageLabel" />
+        app:layout_constraintTop_toBottomOf="@id/tipPercentageLabel"
+        tools:text="reallyreallylonglabelmessagetext"/>
 
     <Button
         android:id="@+id/preset15Button"

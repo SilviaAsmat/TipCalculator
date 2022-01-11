@@ -43,7 +43,7 @@ public class MainActivityViewModel extends ViewModel {
 
     private void calculateTip() {
         double result = tipCalculator.calculateTip();
-        _result.setValue("Tip Total: $" + result);
+        _result.setValue("Tip Total:\n$" + result);
         _errorMessage.setValue(null);
     }
 
