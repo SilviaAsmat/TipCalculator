@@ -93,9 +93,15 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable editable) {
-            String currentValue = editable.toString();
+            String currentValue = editable.toString().replace("$", "");
+            String formatted = "$" + currentValue;
+            EditText input = findViewById(R.id.billTotalInput);
+            input.removeTextChangedListener(this);
+            input.setText(formatted);
+            input.setSelection(formatted.length());
             Log.v("SAA", currentValue);
             viewModel.updateBillTotal(currentValue);
+            input.addTextChangedListener(this);
         }
     }
 
