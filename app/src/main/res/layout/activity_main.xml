@@ -21,11 +21,13 @@
         android:id="@+id/billTotalInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textAlignment="textEnd"
         app:layout_constraintStart_toEndOf="@id/billTotalLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/billTotalLabel"
         app:layout_constraintBottom_toBottomOf="@id/billTotalLabel"
-        android:inputType="numberDecimal"/>
+        android:inputType="numberDecimal"
+        android:text="$34"/>
 
     <TextView
         android:id="@+id/tipPercentageLabel"

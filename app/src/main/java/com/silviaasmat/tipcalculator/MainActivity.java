@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
         }
 
         @Override
@@ -102,6 +101,30 @@ public class MainActivity extends AppCompatActivity {
             Log.v("SAA", currentValue);
             viewModel.updateBillTotal(currentValue);
             input.addTextChangedListener(this);
+            String s = formatted;
+            if (s.contains(".")) {
+                int indexOfDecimalPoint;
+                for(int index = 0; index < s.length(); index++) {
+                    if (s.charAt(index) == '.') {
+                        // $123.75  s.length=7   indexOfDecimalPoint=4
+                        // $123.75869  s.length=10   indexOfDecimalPoint=4
+                        // $123.7  s.length=6   indexOfDecimalPoint=4
+                        indexOfDecimalPoint = index;
+                        int maxValidLength = indexOfDecimalPoint + 3;
+                        if (s.length() <= maxValidLength) {
+                            // do nothing
+                        } else {
+                            String substring = s.substring(0, maxValidLength);
+                            input.removeTextChangedListener(this);
+                            input.setText(substring);
+                            input.setSelection(substring.length());
+                            input.addTextChangedListener(this);
+                        }
+                    }
+                }
+            } else {
+
+            }
         }
     }
 
@@ -130,4 +153,6 @@ public class MainActivity extends AppCompatActivity {
             input.addTextChangedListener(this);
         }
     }
+
+
 }
