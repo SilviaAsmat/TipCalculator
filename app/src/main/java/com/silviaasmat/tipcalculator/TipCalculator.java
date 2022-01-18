@@ -22,8 +22,14 @@ public class TipCalculator {
         }
     }
 
+    /**
+     * Calculates tip and limits to two decimal places
+     * @return
+     */
     public double calculateTip() {
         double result = billTotal * tipPercentage / 100;
-        return result;
+        StringUtils stringUtils = new StringUtils();
+        String formatted = stringUtils.limitDecimalStringToTwoDecimalPoints("" + result);
+        return Double.parseDouble(formatted);
     }
 }

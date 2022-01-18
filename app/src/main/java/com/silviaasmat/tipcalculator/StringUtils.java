@@ -10,7 +10,7 @@ public class StringUtils {
     }
 
 
-    private String limitDecimalStringToTwoDecimalPoints(String s) {
+    public String limitDecimalStringToTwoDecimalPoints(String s) {
         if (s.contains(".")) {
             int indexOfDecimalPoint;
             for(int index = 0; index < s.length(); index++) {

@@ -60,5 +60,19 @@ public class TipCalculatorTest {
         assertEquals(0, actual,0.0);
     }
 
+    @Test
+    public void test_calculate_tip_limits_to_two_decimal_points() {
+        // Arrange
+        TipCalculator tipCalculator = new TipCalculator();
+        tipCalculator.setBillTotal(12.56);
+        tipCalculator.setTipPercentage(18);
+
+        // Act
+        double actual = tipCalculator.calculateTip();
+
+        // Assert
+        assertEquals(2.26, actual,0.0);
+    }
+
 
 }
