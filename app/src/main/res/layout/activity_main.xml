@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="@id/billTotalLabel"
         app:layout_constraintBottom_toBottomOf="@id/billTotalLabel"
         android:inputType="numberDecimal"
-        android:text="$34"/>
+        />
 
     <TextView
         android:id="@+id/tipPercentageLabel"

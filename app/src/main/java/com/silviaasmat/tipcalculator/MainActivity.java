@@ -99,7 +99,8 @@ public class MainActivity extends AppCompatActivity {
             input.removeTextChangedListener(this);
             input.setText(formatted);
             input.setSelection(formatted.length());
-            viewModel.updateBillTotal(currentValue);
+            String newBillTotal = formatted.replace("$", "");
+            viewModel.updateBillTotal(newBillTotal);
             input.addTextChangedListener(this);
         }
     }
