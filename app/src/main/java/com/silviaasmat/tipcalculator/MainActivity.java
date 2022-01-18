@@ -93,35 +93,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void afterTextChanged(Editable editable) {
             String currentValue = editable.toString().replace("$", "");
-            String formatted = "$" + currentValue;
+            StringUtils stringUtils = new StringUtils();
+            String formatted = stringUtils.convertDecimalToCurrency(currentValue);
             EditText input = findViewById(R.id.billTotalInput);
             input.removeTextChangedListener(this);
             input.setText(formatted);
             input.setSelection(formatted.length());
-            Log.v("SAA", currentValue);
             viewModel.updateBillTotal(currentValue);
             input.addTextChangedListener(this);
-            String s = formatted;
-            if (s.contains(".")) {
-                int indexOfDecimalPoint;
-                for(int index = 0; index < s.length(); index++) {
-                    if (s.charAt(index) == '.') {
-                        indexOfDecimalPoint = index;
-                        int maxValidLength = indexOfDecimalPoint + 3;
-                        if (s.length() <= maxValidLength) {
-                            // do nothing
-                        } else {
-                            String substring = s.substring(0, maxValidLength);
-                            input.removeTextChangedListener(this);
-                            input.setText(substring);
-                            input.setSelection(substring.length());
-                            input.addTextChangedListener(this);
-                        }
-                    }
-                }
-            } else {
-
-            }
         }
     }
 
