@@ -106,9 +106,6 @@ public class MainActivity extends AppCompatActivity {
                 int indexOfDecimalPoint;
                 for(int index = 0; index < s.length(); index++) {
                     if (s.charAt(index) == '.') {
-                        // $123.75  s.length=7   indexOfDecimalPoint=4
-                        // $123.75869  s.length=10   indexOfDecimalPoint=4
-                        // $123.7  s.length=6   indexOfDecimalPoint=4
                         indexOfDecimalPoint = index;
                         int maxValidLength = indexOfDecimalPoint + 3;
                         if (s.length() <= maxValidLength) {
