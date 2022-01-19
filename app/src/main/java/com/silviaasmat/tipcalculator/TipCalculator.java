@@ -32,4 +32,9 @@ public class TipCalculator {
         String formatted = stringUtils.limitDecimalStringToTwoDecimalPoints("" + result);
         return Double.parseDouble(formatted);
     }
+
+    public double calculateGrandTotal() {
+        double grandTotal = billTotal + calculateTip();
+        return grandTotal;
+    }
 }

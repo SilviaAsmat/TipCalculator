@@ -74,5 +74,33 @@ public class TipCalculatorTest {
         assertEquals(2.26, actual,0.0);
     }
 
+    @Test
+    public void test_calculate_grand_total_to_two_decimal_points() {
+        // Arrange
+        TipCalculator tipCalculator = new TipCalculator();
+        tipCalculator.setBillTotal(12.56);
+        tipCalculator.setTipPercentage(18);
+
+        // Act
+        double actual = tipCalculator.calculateGrandTotal();
+
+        // Assert
+        assertEquals(14.82, actual,0.0);
+    }
+
+    @Test
+    public void test_calculate_grand_total_with_no_decimal_points() {
+        // Arrange
+        TipCalculator tipCalculator = new TipCalculator();
+        tipCalculator.setBillTotal(40.00);
+        tipCalculator.setTipPercentage(50);
+
+        // Act
+        double actual = tipCalculator.calculateGrandTotal();
+
+        // Assert
+        assertEquals(60.00, actual,0.0);
+    }
+
 
 }

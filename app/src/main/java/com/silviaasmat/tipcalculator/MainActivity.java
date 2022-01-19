@@ -40,9 +40,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateTipTotal(String total) {
-        Log.v("SAA", "total: "+ total);
         TextView tipTotal = findViewById(R.id.tipTotal);
         tipTotal.setText(total);
+    }
+
+    private void updateGrandTotalLabel(String total) {
+        TextView grandTotal = findViewById(R.id.grandTotal);
+        grandTotal.setText(total);
     }
 
     private void setPresetButtonsClickListeners() {
@@ -72,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
                     updateTipTotal(tipAmount);
                 }
         );
+        viewModel.grandTotal.observe(this, grandTotal -> {
+            updateGrandTotalLabel(grandTotal);
+        });
         viewModel.errorMessage.observe(this, errorMessage -> {
             EditText input = findViewById(R.id.tipPercentageInput);
             input.setError(errorMessage);

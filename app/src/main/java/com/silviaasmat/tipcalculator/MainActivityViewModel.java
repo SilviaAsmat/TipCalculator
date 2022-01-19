@@ -14,6 +14,9 @@ public class MainActivityViewModel extends ViewModel {
     private MutableLiveData _errorMessage = new MutableLiveData();
     public LiveData<String> errorMessage = _errorMessage;
 
+    private MutableLiveData _grandTotal = new MutableLiveData();
+    public LiveData<String> grandTotal = _grandTotal;
+
     private TipCalculator tipCalculator = new TipCalculator();
 
     public void updateBillTotal(String billTotal) {
@@ -23,6 +26,7 @@ public class MainActivityViewModel extends ViewModel {
             double converted = Double.parseDouble(billTotal);
             tipCalculator.setBillTotal(converted);
             calculateTip();
+            calculateGrandTotal();
         }
     }
 
@@ -34,6 +38,7 @@ public class MainActivityViewModel extends ViewModel {
                 int converted = Integer.parseInt(tipPercent);
                 tipCalculator.setTipPercentage(converted);
                 calculateTip();
+                calculateGrandTotal();
             } catch(Exception e) {
                 Log.v("SAA", e.getLocalizedMessage());
                 _errorMessage.setValue("Invalid Tip Percent.");
@@ -45,6 +50,11 @@ public class MainActivityViewModel extends ViewModel {
         double result = tipCalculator.calculateTip();
         _result.setValue("Tip Total:\n$" + result);
         _errorMessage.setValue(null);
+    }
+
+    private void calculateGrandTotal() {
+        double result = tipCalculator.calculateGrandTotal();
+        _grandTotal.setValue("Tip Total:\n$" + result);
     }
 
 }
