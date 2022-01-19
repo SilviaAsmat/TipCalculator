@@ -54,7 +54,7 @@ public class MainActivityViewModel extends ViewModel {
 
     private void calculateGrandTotal() {
         double result = tipCalculator.calculateGrandTotal();
-        _grandTotal.setValue("Tip Total:\n$" + result);
+        _grandTotal.setValue("Grand Total:\n$" + result);
     }
 
 }
